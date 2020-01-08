@@ -10,3 +10,7 @@ def question_list():
     table.reverse()
     return table
 
+
+def answer_list():
+    table = get_table_from_file(answer)
+    return table

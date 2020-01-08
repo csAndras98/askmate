@@ -4,15 +4,17 @@ from data_manager import *
 app = Flask(__name__)
 
 
-@app.route('/list')
+@app.route('/')
 def route_index():
     table = question_list()
     return render_template('list.html', table=table)
 
 
 @app.route('/question/<question_id>')
-def route_question():
-    return render_template('question.html')
+def route_question(question_id=None):
+    table = question_list()
+    answers = answer_list()
+    return render_template('question.html', question_id=question_id, table=table, answers=answers)
 
 
 @app.route('/add-question')
