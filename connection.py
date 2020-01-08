@@ -1,7 +1,11 @@
+import csv
+
 def get_table_from_file(file_name):
+    table = []
     with open(file_name, "r") as file:
-        lines = file.readlines()
-    table = [element.replace("\n", "").split(";") for element in lines]
+        lines = csv.reader(file, delimiter=',', quotechar='"')
+        for row in lines:
+            table.append(row)
     return table
 
 
@@ -10,3 +14,5 @@ def write_table_to_file(file_name, table):
         for record in table:
             row = ';'.join(record)
             file.write(row + "\n")
+
+
