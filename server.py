@@ -4,19 +4,10 @@ from data_manager import *
 app = Flask(__name__)
 
 
-
-@app.route('/')
-def route_list():
-    table = element_table()
-    return render_template('index.html')
-
 @app.route('/list')
 def route_index():
-    table = element_table()
-    table.remove(table[0])
-    table.reverse()
+    table = question_list()
     return render_template('list.html', table=table)
-
 
 
 @app.route('/question/<question_id>')

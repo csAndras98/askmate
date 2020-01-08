@@ -1,6 +1,12 @@
 from connection import *
 
-def element_table():
-    split_table = get_table_from_file("./static/question.csv")
-    return split_table
+question = "./static/question.csv"
+answer = "./static/answer.csv"
+
+
+def question_list():
+    table = get_table_from_file(question)
+    table.remove(table[0])
+    table.reverse()
+    return table
 
