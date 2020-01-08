@@ -1,15 +1,32 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+    body {background-color: khaki;}
+    h1 {color: seagreen;}
+    h1 {text-align: center; font-family: georgia; font-size: 400%;}
+    h2 {color: crimson;}
+    h2 {text-align: center; font-family: georgia; font-size: 150%;}
+    ol {color: #004d00;}
+    ol {text-align: left; font-family: georgia; font-size: 200%;}
+    ol li {background: #fcfae8;margin: 20px;}
+</style>
+</head>
 
+<body>
 {% if question_id %}
     {% for item in table %}
         {% if item[0] == question_id %}
 <h1>{{item[4]}}</h1>
-<p>{{item[5]}}</p>
+<h2>{{item[5]}}</h2>
         {% endif %}
     {% endfor %}
-    {% for item in answers %}
+
+    <ol>{% for item in answers %}
         {% if item[3] == question_id %}
-<p>{{item[4]}}</p>
+        <li>{{item[4]}}</li>
         {% endif %}
     {% endfor %}
+    </ol>
 {% endif %}
+</body>

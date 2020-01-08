@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+    body {background-color: khaki;}
+    h1 {color: seagreen;}
+    h1 {text-align: center; font-family: georgia; font-size: 400%;}
+    p {color: crimson;}
+    p {text-align: left; font-family: georgia; font-size: 250%;}
+    </style>
     <meta charset="UTF-8">
     <title>Questions list</title>
 </head>
 <body>
 <h1>Questions</h1>
-<ol>
     {% for item in table %}
-    <li>
-        <a href="/question/{{item[0]}}">{{item[4]}} </a>
-    </li>
+        <p><a href="/question/{{item[0]}}">{{item[4]}} </a></p>
     {%endfor%}
-</ol>
+
+
 
 </body>
 </html>
