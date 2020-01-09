@@ -1,8 +1,9 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, request
 from data_manager import *
 
 app = Flask(__name__)
 
+save_question = []
 
 @app.route('/')
 def route_index():
@@ -17,8 +18,13 @@ def route_question(question_id=None):
     return render_template('question.html', question_id=question_id, table=table, answers=answers)
 
 
-@app.route('/add-question')
+@app.route('/add-question', methods=['GET', 'POST'])
 def route_add_question():
+    if request.method == 'POST':
+        save_question.append(request.form['Your Question'])
+        save_question.append(request.form['Your Comment'])
+        print(save_question[0], save_question[1])
+        return redirect('/')
     return render_template('add-question.html')
 
 

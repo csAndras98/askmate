@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Askmate</title>
+    </head>
+    <body>
+        <h1>Ask Question</h1>
+        <form action='/add-question' method="POST">
+            <label for="Your question">Your question:</label>
+            <textarea id="Your question" name="Your Question" rows="8" cols="80"></textarea>
+            <p></p>
+            <label for="Your Comment">Your comment:</label>
+            <textarea id="Your Comment" name="Your Comment" rows="8" cols="80"></textarea>
+            <p></p>
+            <button type="submit">Ask away</button>
+        </form>
+    </body>
 </html>
