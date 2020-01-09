@@ -9,10 +9,7 @@ def get_table_from_file(file_name):
     return table
 
 
-def write_table_to_file(file_name):
+def write_table_to_file(file_name, to_write):
     with open(file_name, "a") as file:
         writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        writer.writerow(['1'] * 4 + ["test"])
-
-if __name__ == '__main__':
-    write_table_to_file("./static/question.csv")
+        writer.writerow(to_write)
