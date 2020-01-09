@@ -28,9 +28,14 @@ def route_add_question():
     return render_template('add-question.html')
 
 
-@app.route('/question/<question_id>/new-answer')
-def route_new_answer():
-    return render_template('new-answer.html')
+@app.route('/question/<question_id>/new-answer', methods=['GET', 'POST'])
+def route_new_answer(question_id=None):
+    saved_answer=[]
+    if request.method == 'POST':
+        saved_answer.append(request.form['note'])
+        data_manager.save_answer(saved_answer,question_id)
+        return redirect(f'/question/{question_id}')
+    return render_template('new-answer.html', question_id=question_id)
 
 
 if __name__ == '__main__':
