@@ -25,3 +25,14 @@ def save_question(saved_question):
     write.append(saved_question[0])
     write.append(saved_question[1])
     connection.write_table_to_file(question, write)
+
+
+def save_answer(saved_answer):
+    write = []
+    table = connection.get_table_from_file(answer)
+    write.append(int(table[len(table)-1][0])+1)
+    for i in range(2):
+        write.append("WOP")
+    write.append()
+    write.append(saved_answer[0])
+    connection.write_table_to_file(answer, write)
