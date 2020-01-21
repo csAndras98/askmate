@@ -2,7 +2,7 @@ import connection
 
 @connection.connection_handler
 def get_all_questions(cursor):
-    cursor.execute("""Select title from question""")
+    cursor.execute("""Select title, submission_time, view_number, vote_number from question """)
     questions = cursor.fetchall()
     return questions
 
