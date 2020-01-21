@@ -6,7 +6,20 @@
 </head>
 <body>
 <table>
-{{questions}}
+    <th>Question</th>
+     <th>submission time</th>
+     <th>view number</th>
+     <th>vote number</th>
+    {% for question in questions %}
+    <tr>
+
+        <td>{{question['title']}}</td>
+        <td>{{question['submission_time']}}</td>
+        <td>{{question['view_number']}}</td>
+        <td>{{question['vote_number']}}</td>
+    </tr>
+
+    {%endfor%}
 
 
 </table>
