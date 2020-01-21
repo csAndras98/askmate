@@ -4,13 +4,17 @@ import data_manager
 app = Flask(__name__)
 
 
+
+@app.route('/')
+def all_questions():
+    questions = data_manager.get_all_questions()
+    return render_template('index.html', questions=questions)
+"""
+
 @app.route('/')
 def route_index():
     table = data_manager.question_list()
-    return render_template('list.html', table=table)
-
-
-@app.route('/question/<question_id>')
+    return render_template('list.html', table=table)@app.route('/question/<question_id>')
 def route_question(question_id=None):
     table = data_manager.question_list()
     answers = data_manager.answer_list()
@@ -35,7 +39,7 @@ def route_new_answer(question_id=None):
         saved_answer.append(request.form['note'])
         data_manager.save_answer(saved_answer,question_id)
         return redirect(f'/question/{question_id}')
-    return render_template('new-answer.html', question_id=question_id)
+    return render_template('new-answer.html', question_id=question_id)"""
 
 
 if __name__ == '__main__':
