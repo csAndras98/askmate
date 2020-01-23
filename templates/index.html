@@ -13,6 +13,9 @@
 <table class = "separator">
     <thead>
     <th>Questions</th>
+    <th>Submission time</th>
+    <th>View number</th>
+     <th>Vote number</th>
 
     </thead>
     <tbody>
@@ -23,6 +26,8 @@
     <button type="submit" class="btn-link">{{question['title']}}</button>
         </form> </td>
         <td>{{question['submission_time']}}</td>
+     <td>{{question['view_number']}}</td>
+        <td>{{question['vote_number']}}</td>
 
     </tr>
     {%endfor%}
