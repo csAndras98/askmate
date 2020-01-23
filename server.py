@@ -2,20 +2,28 @@ from flask import Flask, render_template, redirect, request
 import data_manager
 
 app = Flask(__name__)
-
+switch = True
 
 
 @app.route('/')
 def all_questions():
-    questions = data_manager.get_all_questions()
+    questions = data_manager.last_5_questions()
     return render_template('index.html', questions=questions)
 
-
-@app.route('/question/<question_id>')
-def route_question(question_id=None):
-    question = data_manager.get_all_questions()
-    answers = data_manager.get_all_answer()
-    return render_template('question.html', question_id=int(question_id), question=question, answers=answers)
+@app.route('/list', methods=['GET', 'POST'])
+def list():
+    global switch
+    if request.method == 'POST' and switch:
+        switch = False
+        return redirect('/list')
+    elif request.method == 'POST' and not switch:
+        switch = True
+        return redirect('/list')
+    if switch:
+        questions = data_manager.title_order_by_asc()
+    else:
+        questions = data_manager.title_order_by_desc()
+    return render_template('list.html', questions=questions)
 
 @app.route('/add-question', methods=['GET', 'POST'])
 def route_add_question ():
@@ -32,31 +40,28 @@ def route_new_answer(question_id=None):
     return render_template('new-answer.html', question_id=question_id)
 
 
-
-
-""""
-@app.route('/add-question')
-def route_add_question(title, message):
-    new_question = data_manager.add_question(title,message)
-    return render_template('add-question.html', new_question)
-
-
-saved_question = []
+@app.route('/question/<question_id>', methods=['GET', 'POST'])
+def route_question(question_id=None):
+    questions = data_manager.title_order_by_desc()
+    answers = data_manager.get_answers()
     if request.method == 'POST':
-        saved_question.append(request.form['Your Question'])
-        saved_question.append(request.form['Your Comment'])
-        data_manager.save_question(saved_question)
-
-
-
-@app.route('/question/<question_id>/new-answer', methods=['GET', 'POST'])
-def route_new_answer(question_id=None):
-    saved_answer=[]
-    if request.method == 'POST':
-        saved_answer.append(request.form['note'])
-        data_manager.save_answer(saved_answer,question_id)
+        data_manager.view_num(question_id)
         return redirect(f'/question/{question_id}')
-    return render_template('new-answer.html', question_id=question_id)"""
+    return render_template('question.html', question_id=int(question_id), questions=questions, answers=answers)
+
+
+@app.route('/question/<question_id>/up_vote')
+def question_up_vote(question_id=None):
+    data_manager.question_up_vote(question_id)
+    return redirect(f'/question/{question_id}')
+
+
+@app.route('/question/<question_id>/<answer_id>/up_vote')
+def answer_up_vote(answer_id=None, question_id=None):
+    data_manager.answer_up_vote(answer_id)
+    return redirect(f'/question/{question_id}')
+
+
 
 
 if __name__ == '__main__':
