@@ -22,8 +22,8 @@ h1 {
   font-family: 'Covered By Your Grace', cursive;
   font-weight: 300;
   margin-top: -1em;
-  text-shadow: 0 4px 3px black;
-    color: white;
+  text-shadow: 0 4px 3px white;
+    color: black;
   }
 
 .center {
@@ -46,9 +46,10 @@ table {
     }
   thead {
     text-transform: uppercase;
-    font-weight: 300;
+    font-weight: bold;
+      font-size: 150%;
     text-align: center;
-    color: white;
+    color: black;
     position: center;
   }
 th{font-family: georgia;
@@ -68,6 +69,18 @@ td{ font-family: georgia;
   background-color: rgba(255, 255, 255, 0.5);
 height: 100px;}
 
+a{text-align: left;
+  font-size: 150%;
+  font-family: 'Covered By Your Grace', cursive;
+  font-weight: bold;
+  text-shadow: 0 8px 4px white;
+    color: black;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.5);
+height: 40px;
+  min-width: 100px;
+max-width: 200px}
 
 .btn-link {
     border: none;
