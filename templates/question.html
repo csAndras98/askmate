@@ -14,27 +14,26 @@
 </head>
 
 <body>
-{% if question_id %}
-    {% for item in table %}
-        {% if item[0] == question_id %}
-<h1>{{item[4]}}</h1>
-<h2>{{item[5]}}</h2>
-        {% endif %}
-    {% endfor %}
+{% for question in question %}
+    {% if question['id'] == question_id %}
+<h1>{{question ['title']}}</h1>
+<h2>{{question ['message']}}</h2>
+    {% endif %}
+{% endfor %}
 
-    <ol>{% for item in answers %}
-        {% if item[3] == question_id %}
-        <li>{{item[4]}}</li>
+    <ol>{% for answer in answers %}
+        {% if answer['question_id'] == question_id %}
+        <li>{{answer['message']}}</li>
         {% endif %}
     {% endfor %}
     </ol>
-{% endif %}
 
-{% for item in table %}
-{%if item[0]==question_id%}
-        <a href="/question/{{item[0]}}/new-answer">New answer </a>
+
+{% for question in question %}
+{%if question ['id']==question_id%}
+        <a href="/question/{{question ['id']}}/new-answer">New answer </a>
 {%endif%}
 {%endfor%}
-<p></p>
+
  <a href="/"> Homepage </a>
 </body>
