@@ -3,25 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-<link rel="stylesheet" href="static/mystyle.css" type= "text/css" media="screen"/>
+<link rel="stylesheet" href="static/index.css" type= "text/css" media="screen"/>
 
 </head>
 <body>
+<div class="banner-img">
 
-<table>
-    <th>Question</th>
-     <th>submission time</th>
-     <th>view number</th>
-     <th>vote number</th>
+<h1>WELCOME!</h1>
+<table class = "separator">
+    <thead>
+    <th>Questions</th>
+
+    </thead>
+    <tbody>
     {% for question in questions %}
     <tr>
-        <td><a href="/question/{{question['id']}}"> {{question['title']}}</a></td>
+        <div class="btn-link"></div>
+        <td><form action="/question/{{question['id']}}" method="post">
+    <button type="submit" class="btn-link">{{question['title']}}</button>
+        </form> </td>
         <td>{{question['submission_time']}}</td>
-        <td>{{question['view_number']}}</td>
-        <td>{{question['vote_number']}}</td>
+
     </tr>
     {%endfor%}
 
+</tbody> </div>
 
 </table>
 <a href ='add-question'>Ask question</a>
