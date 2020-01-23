@@ -1,0 +1,123 @@
+
+html, body {
+  margin: 0;;
+  height: 100%;
+    width: 100%;
+  }
+.banner-img{background-image: url("KV.jpg");
+  background-repeat: repeat;
+  background-size: cover;
+background-position: center;
+    height: 150%;
+    width: 100%;
+}
+
+.center {
+  vertical-align: middle;
+  display: inline-block;
+  white-space: normal;
+  }
+
+.separator{
+  border-collapse:separate;
+  border-spacing:0 15px;
+}
+.bl{
+    backdrop-filter: blur(10px);
+}
+
+body {
+  padding: 5em 1em;
+  }
+
+h1 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 500%;
+  font-family: 'Covered By Your Grace', cursive;
+  margin-top: -1em;
+  text-shadow: 0 10px 5px white;
+    color: black;
+  }
+
+h2 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 300%;
+  font-family: 'Covered By Your Grace', cursive;
+  margin-top: -1em;
+  text-shadow: 0 8px 4px white;
+    color: black;
+  }
+
+p{text-align: left;
+  font-size: 150%;
+  font-family: 'Covered By Your Grace', cursive;
+  font-weight: bold;
+  text-shadow: 0 8px 4px white;
+    color: black;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.5);
+height: 40px;
+  min-width: 100px;
+max-width: 200px}
+
+table {
+    size: auto;
+  padding: 1em;
+    }
+  thead {
+    text-transform: uppercase;
+    font-weight: 300;
+    text-align: center;
+    color: white;
+    position: center;
+  }
+
+tbody{text-align: left;
+   }
+
+td{ font-family: georgia;
+    font-size: 150%;
+  text-align: left;
+    min-width: 700px;
+  max-width: 900px;
+  word-break: break-word;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.5);
+height: 100px;}
+
+th{  text-align: center;
+font-family: georgia;
+  text-shadow: 0 2px 2px black;
+    font-size: 150%;
+    min-width: 200px;
+  max-width: 500px;
+  word-break: break-word;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.5);
+height: 100px;}
+
+
+
+  .button {
+    backface-visibility: hidden;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  white-space: nowrap;
+backdrop-filter: blur(10px);
+  border-radius: 6px;
+  border: 0px solid #444;
+  border-width: 0px 0px 0px 0px;
+  padding: 10px 20px 10px 20px;
+    color: #fff;
+  font-size: 16px;
+  font-family: Helvetica Neue;
+  font-weight: 900;
+  font-style: normal;
+
+  }
