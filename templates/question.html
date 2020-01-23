@@ -1,39 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<style>
-    body {background-color: khaki;}
-    h1 {color: seagreen;}
-    h1 {text-align: center; font-family: georgia; font-size: 400%;}
-    h2 {color: crimson;}
-    h2 {text-align: center; font-family: georgia; font-size: 150%;}
-    ol {color: #004d00;}
-    ol {text-align: left; font-family: georgia; font-size: 200%;}
-    ol li {background: #fcfae8;margin: 20px;}
-</style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='question.css') }}" type="text/css" media="screen"/>
 </head>
 
-<body>
-{% for question in question %}
-    {% if question['id'] == question_id %}
-<h1>{{question ['title']}}</h1>
-<h2>{{question ['message']}}</h2>
-    {% endif %}
-{% endfor %}
 
-    <ol>{% for answer in answers %}
-        {% if answer['question_id'] == question_id %}
-        <li>{{answer['message']}}</li>
+<body>
+<div class="banner-img">
+    {% for question in questions %}
+        {% if question['id'] == question_id %}
+            <h1>{{ question['title'] }}</h1>
+            <h2>{{ question['message'] }}</h2>
+            <form action="/question/{{ question_id }}/up_vote" method="get">
+                <div class="button"><input type="submit" value="Vote (question)"/></div>
+            </form>
         {% endif %}
     {% endfor %}
-    </ol>
+<table class="separator">
+    {% for answer in answers %}
+        {% if answer['question_id'] == question_id %}
+            <tr><td>{{ answer['message'] }}</td>
+             <th>{{ answer['vote_number'] }}
+            <form action="/question/{{ question_id }}/{{ answer['id'] }}/up_vote" method="get">
+                <div class="button">
+                <input type="submit" value="Like"/>
+                    </div>
+            </form>
+            </th></tr>
+        {% endif %}
+    {% endfor %}
+</table>
+    {% for question in questions %}
+        {% if question['id'] == question_id %}
+            <p><a href="/question/{{ question_id }}/new-answer">New answer </a></p>
+        {% endif %}
+    {% endfor %}
 
 
-{% for question in question %}
-{%if question ['id']==question_id%}
-        <a href="/question/{{question ['id']}}/new-answer">New answer </a>
-{%endif%}
-{%endfor%}
+<p><a href="/"> Homepage! </a></p>
+<p><a href="/list"> View all questions! </a></p>
 
- <a href="/"> Homepage </a>
 </body>
