@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+<link rel="stylesheet" href="static/mystyle.css" type= "text/css" media="screen"/>
+
 </head>
 <body>
+
 <table>
     <th>Question</th>
      <th>submission time</th>
@@ -12,16 +15,16 @@
      <th>vote number</th>
     {% for question in questions %}
     <tr>
-
-        <td>{{question['title']}}</td>
+        <td><a href="/question/{{question['id']}}"> {{question['title']}}</a></td>
         <td>{{question['submission_time']}}</td>
         <td>{{question['view_number']}}</td>
         <td>{{question['vote_number']}}</td>
     </tr>
-
     {%endfor%}
 
 
 </table>
+<a href ='add-question'>Ask question</a>
+
 </body>
 </html>
