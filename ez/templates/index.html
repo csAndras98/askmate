@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+    body {background-color: khaki;}
+    h1 {color: seagreen;}
+    h1 {text-align: center; font-family: georgia; font-size: 400%;}
+    p {color: crimson;}
+    p {text-align: left; font-family: georgia; font-size: 250%;}
+    .btn-link {
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    color: #0000EE;
+    padding: 0;
+    text-decoration: underline;
+    font-family: inherit;
+    font-size: inherit;
+}
+    </style>
+    <meta charset="UTF-8">
+    <title>Questions list</title>
+</head>
+<body>
+<table>
+    <th>Question</th>
+     <th>submission time</th>
+     <th>view number</th>
+     <th>vote number</th>
+    {% for question in questions %}
+    <tr>
+        <td><form action="/question/{{question['id']}}" method="post">
+    <button type="submit" class="btn-link">{{question['title']}}</button>
+</form></td>
+        <td>{{question['submission_time']}}</td>
+        <td>{{question['view_number']}}</td>
+        <td>{{question['vote_number']}}</td>
+
+    </tr>
+    {%endfor%}
+
+
+
+</table>
+</body>
+</html>

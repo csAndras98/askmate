@@ -1,15 +1,45 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>question</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='question.css') }}" type="text/css" media="screen"/>
+</head>
 
-{% if question_id %}
-    {% for item in table %}
-        {% if item[0] == question_id %}
-<h1>{{item[4]}}</h1>
-<p>{{item[5]}}</p>
+
+<body>
+<div class="banner-img">
+    {% for question in questions %}
+        {% if question['id'] == question_id %}
+            <h1>{{ question['title'] }}</h1>
+            <h2>{{ question['message'] }}</h2>
+            <form action="/question/{{ question_id }}/up_vote" method="get">
+                <div class="button"><input type="submit" value="Vote (question)"/></div>
+            </form>
         {% endif %}
     {% endfor %}
-    {% for item in answers %}
-        {% if item[3] == question_id %}
-<p>{{item[4]}}</p>
+<table class="separator">
+    {% for answer in answers %}
+        {% if answer['question_id'] == question_id %}
+            <tr><td>{{ answer['message'] }}</td>
+             <th>{{ answer['vote_number'] }}
+            <form action="/question/{{ question_id }}/{{ answer['id'] }}/up_vote" method="get">
+                <div class="button">
+                <input type="submit" value="Like"/>
+
+            </form>
+            </th></tr>
         {% endif %}
     {% endfor %}
-{% endif %}
+</table>
+    {% for question in questions %}
+        {% if question['id'] == question_id %}
+            <p><a href="/question/{{ question_id }}/new-answer">New answer </a></p>
+        {% endif %}
+    {% endfor %}
+
+
+<p><a href="/"> Homepage! </a></p>
+<p><a href="/list"> View all questions! </a></p>
+</div>
+</body>

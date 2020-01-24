@@ -1,0 +1,62 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  }
+
+.banner-img{background-image: url("KV.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+background-position: center;
+    height: 100%;
+    width: 100%;
+    margin-top: -55px;
+}
+
+h1 {
+  text-align: center;
+    backdrop-filter: blur(10xp);
+  font-weight: bold;
+  font-size: 500%;
+  font-family: 'Covered By Your Grace', cursive;
+  text-shadow: 0 10px 5px white;
+    color: black;
+  }
+
+textarea{position: center;
+  margin-right: auto;
+  margin-left: 550px;
+  top: 100px;
+  resize: none;
+    max-width: 700px;
+height: 200px;}
+
+label{font-weight: bold;
+     font-size: 150%;
+     margin-right: auto;
+    margin-left: 550px;
+    display: block;
+    width: 180px;
+    float: left;
+backdrop-filter: blur(10px);}
+
+  .button {
+      position:absolute;
+    transition: .5s ease;
+    top: 68%;
+    left: 68%;
+    backface-visibility: hidden;
+  cursor: pointer;
+  display: inline-block;
+  white-space: nowrap;
+backdrop-filter: blur(10px);
+  border-radius: 6px;
+  border: 0px solid #444;
+  padding: 10px 20px 10px 20px;
+  font-size: 16px;
+  font-weight: 900;
+  font-style: normal;
+
+  }
+

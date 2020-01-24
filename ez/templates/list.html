@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Questions list</title>
+</head>
+<body>
+<table>
+    <th>Question</th>
+     <th>submission time</th>
+     <th>view number</th>
+     <th>vote number</th>
+    {% for question in questions %}
+    <tr>
+        <td><form action="/question/{{question['id']}}" method="post">
+    <button type="submit" class="btn-link">{{question['title']}}</button>
+</form></td>
+        <td>{{question['submission_time']}}</td>
+        <td>{{question['view_number']}}</td>
+        <td>{{question['vote_number']}}</td>
+
+    </tr>
+    {%endfor%}
+<form action="/list" method="POST">
+    <input type="submit" value="Asc/Desc" />
+        </form>
+
+
+</table>
+</body>
+</html>
