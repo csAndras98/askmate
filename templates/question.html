@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>question</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='question.css') }}" type="text/css" media="screen"/>
 </head>
 
@@ -26,7 +26,7 @@
             <form action="/question/{{ question_id }}/{{ answer['id'] }}/up_vote" method="get">
                 <div class="button">
                 <input type="submit" value="Like"/>
-                    </div>
+
             </form>
             </th></tr>
         {% endif %}
@@ -41,5 +41,5 @@
 
 <p><a href="/"> Homepage! </a></p>
 <p><a href="/list"> View all questions! </a></p>
-
+</div>
 </body>
