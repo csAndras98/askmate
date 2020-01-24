@@ -6,11 +6,12 @@ html, body {
   }
 
 .banner-img{background-image: url("KV.jpg");
-  background-repeat: repeat;
+  background-repeat: no-repeat;
   background-size: cover;
 background-position: center;
-    height: 150%;
+    height: 100%;
     width: 100%;
+    margin-top: -16px;
 }
 
 h1 {
