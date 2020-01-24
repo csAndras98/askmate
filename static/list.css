@@ -1,0 +1,99 @@
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  }
+.banner-img{background-image: url("KV.jpg");
+  background-size: cover;
+background-position: center;
+    height: 150%;
+    width: 100%;
+  min-height: 100%;
+  margin-top: -80px;
+  margin-left: -15px;
+  display: table;
+  background-attachment: fixed, scroll;
+  background-repeat: no-repeat, repeat-y;
+}
+
+
+.separator{
+  border-collapse:separate;
+  border-spacing:0 15px;
+}
+
+body {
+  padding: 5em 1em;
+  }
+
+h1 {
+  text-align: center;
+  font-size: 500%;
+  font-family: 'Covered By Your Grace', cursive;
+  font-weight: 300;
+  margin-top: -1em;
+  text-shadow: 0 4px 3px black;
+    color: white;
+  }
+
+.center {
+  vertical-align: middle;
+  display: inline-block;
+  white-space: normal;
+  }
+
+.separator{
+  border-collapse:separate;
+  border-spacing:0 15px;
+}
+.bl{
+    backdrop-filter: blur(10px);
+}
+
+table {
+    size: auto;
+  padding: 1em;
+    }
+  thead {
+    text-transform: uppercase;
+    font-weight: 300;
+    text-align: center;
+    color: white;
+    position: center;
+  }
+th{font-family: georgia;
+    word-break: break-word;
+  text-align: center;
+font-size: 120%;
+text-shadow: 0 1px 1px black;
+background-color: white;
+height: 70px;
+max-width: 700px;
+width: 100px;}
+
+  tbody{text-align: left;
+   }
+
+td{ font-family: georgia;
+    font-size: 150%;
+  text-align: center;
+  max-width: 900px;
+  word-break: break-word;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.5);
+height: 100px;}
+
+.btn-link {
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    color: #0000EE;
+    padding: 0;
+    text-decoration: underline;
+    font-family: inherit;
+    font-size: inherit;
+}
