@@ -38,7 +38,7 @@ def get_answers(cursor):
 def save_question(cursor, title, message):
     cursor.execute("""INSERT INTO question (submission_time, view_number, vote_number, title, message) 
     VALUES (%s, 0, 0, %s, %s)""",
-                   [datetime.datetime.now(), title, message])
+                   [datetime.datetime.now().strftime("%Y-%m-%d %H:%M"), title, message])
 
 
 @connection.connection_handler
