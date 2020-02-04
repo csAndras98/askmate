@@ -10,6 +10,7 @@ def all_questions():
     questions = data_manager.last_5_questions()
     return render_template('index.html', questions=questions)
 
+
 @app.route('/list', methods=['GET', 'POST'])
 def list():
     global switch
