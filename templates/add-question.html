@@ -2,25 +2,22 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Askmate</title>
-        <style>
-        body {background-color: khaki;}
-        h1 {color: seagreen;}
-        h1 {text-align: center; font-family: georgia; font-size: 400%;}
-        label {color: crimson;}
-        label {text-align: left; font-family: georgia; font-size: 150%;}
-        </style>
+        <title>Add question</title>
+         <link rel="stylesheet" href="{{ url_for('static', filename='add-question.css') }}" type="text/css" media="screen"/>
     </head>
     <body>
+     <div class="banner-img">
         <h1>Ask Question</h1>
-        <form action='/add-question' method="POST">
+         <form action='/add-question' method="POST">
             <label for="Your question">Your question:</label>
-            <textarea id="Your question" name="Your Question" rows="8" cols="80"></textarea>
+            <textarea id="Your Question" name="Your Question" rows="8" cols="80"></textarea>
             <p></p>
-            <label for="Your Comment">Your comment:</label>
+            <label for="Your comment">Your comment:</label>
             <textarea id="Your Comment" name="Your Comment" rows="8" cols="80"></textarea>
             <p></p>
+        <div class="button">
             <button type="submit">Ask away</button>
         </form>
+        </div>
     </body>
 </html>

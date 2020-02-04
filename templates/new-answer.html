@@ -2,22 +2,18 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Askmate</title>
-        <style>
-        body {background-color: khaki;}
-        h1 {color: seagreen;}
-        h1 {text-align: center; font-family: georgia; font-size: 400%;}
-        label {color: crimson;}
-        label {text-align: left; font-family: georgia; font-size: 150%;}
-        </style>
-    </head>
+        <title>Add answer</title>
+         <link rel="stylesheet" href="{{ url_for('static', filename='add_answer.css') }}" type="text/css" media="screen"/>
+        </head>
    <body>
+   <div class="banner-img">
    <p>{{question_id}}</p>
-        <h1>Edit note</h1>
+        <h1>Add answer:</h1>
         <form action="/question/{{question_id}}/new-answer" method="post">
-            <label for="note-input">Your answer:</label>
+            <label for="note-input"></label>
             <textarea id="note-input" name='note' rows="8" cols="80"></textarea>
-            <button type="submit">Save answer!</button>
+            <div class="button"><button type="submit">Save answer!</button></div>
         </form>
+   </div>
     </body>
 </html>

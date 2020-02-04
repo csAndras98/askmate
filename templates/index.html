@@ -2,12 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Ask mate</title>
+<link rel="stylesheet" href="static/index.css" type= "text/css" media="screen"/>
+
 </head>
 <body>
-<table>
 
+<div class="banner-img">
+
+<h1>WELCOME!</h1>
+<table class = "separator">
+    <thead>
+    <th>Questions</th>
+    <th>Submission time</th>
+    <th>View number</th>
+     <th>Vote number</th>
+
+    </thead>
+    <tbody>
+    {% for question in questions %}
+    <tr>
+        <div class="btn-link"></div>
+        <td><form action="/question/{{question['id']}}" method="post">
+    <button type="submit" class="btn-link">{{question['title']}}</button>
+        </form> </td>
+        <td>{{question['submission_time']}}</td>
+     <td>{{question['view_number']}}</td>
+        <td>{{question['vote_number']}}</td>
+
+    </tr>
+    {%endfor%}
+
+</tbody> </div>
 
 </table>
+<p><a href="/list"> View all questions! </a></p>
+<a href ='add-question'>Ask question</a>
+
 </body>
 </html>

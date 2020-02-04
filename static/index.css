@@ -1,0 +1,106 @@
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  }
+.banner-img{background-image: url("KV.jpg");
+  background-size: cover;
+background-position: center;
+    height: 150%;
+    width: 100%;
+    margin-top: -80px;
+  margin-left: -16px;
+  display: table;
+  background-attachment: fixed, scroll;
+  background-repeat: no-repeat, repeat-y;
+}
+
+body {
+  padding: 5em 1em;
+  }
+
+
+h1 {
+  text-align: center;
+    backdrop-filter: blur(10xp);
+  font-weight: bold;
+  font-size: 500%;
+  font-family: 'Covered By Your Grace', cursive;
+  text-shadow: 0 10px 5px white;
+    color: black;
+  }
+
+.center {
+  vertical-align: middle;
+  display: inline-block;
+  white-space: normal;
+  }
+
+.separator{
+  border-collapse:separate;
+  border-spacing:0 15px;
+}
+.bl{
+    backdrop-filter: blur(10px);
+}
+
+table {
+    size: auto;
+  padding: 1em;
+    }
+  thead {
+    text-transform: uppercase;
+    font-weight: bold;
+      font-size: 150%;
+    text-align: center;
+    color: black;
+    position: center;
+  }
+th{font-family: georgia;
+    word-break: break-word;
+font-size: 120%;
+text-shadow: 0 2px 1px black;
+background-color: white;
+height: 70px;
+max-width: 700px;
+width: 100px;}
+
+  tbody{text-align: left;
+   }
+
+td{ font-family: georgia;
+    font-size: 150%;
+  text-align: center;
+  max-width: 900px;
+  word-break: break-word;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.5);
+height: 100px;}
+
+a{text-align: left;
+  font-size: 150%;
+  font-family: 'Covered By Your Grace', cursive;
+  font-weight: bold;
+  text-shadow: 0 8px 4px white;
+    color: black;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.5);
+height: 40px;
+  min-width: 100px;
+max-width: 200px}
+
+.btn-link {
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    color: #0000EE;
+    padding: 0;
+    text-decoration: underline;
+    font-family: inherit;
+    font-size: inherit;
+}
