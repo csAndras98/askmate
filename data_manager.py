@@ -31,14 +31,7 @@ def get_answers(cursor):
     answer = cursor.fetchall()
     return answer
 
-'''
-@connection.connection_handler
-def add_question(cursor, new_question, file_path):
-    cursor.execute("""INSERT INTO  question(title, message) VALUES """,
-                   {'title': new_question['title']}, {'message': new_question['message'], 'file_path': file_path})
-    new_question = cursor.fetchall()
-    return new_question
-'''
+
 @connection.connection_handler
 def save_question(cursor, title, message):
     cursor.execute("""INSERT INTO question (submission_time, view_number, vote_number, title, message) 

@@ -42,11 +42,12 @@ def route_new_answer(question_id=None):
 
 @app.route('/question/<question_id>', methods=['GET', 'POST'])
 def route_question(question_id=None):
-    questions = data_manager.title_order_by_desc()
-    answers = data_manager.get_answers()
     if request.method == 'POST':
         data_manager.view_num(question_id)
         return redirect(f'/question/{question_id}')
+
+    questions = data_manager.title_order_by_desc()
+    answers = data_manager.get_answers()
     return render_template('question.html', question_id=int(question_id), questions=questions, answers=answers)
 
 
