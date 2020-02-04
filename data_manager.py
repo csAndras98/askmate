@@ -24,6 +24,7 @@ def title_order_by_desc(cursor):
     order_by_desc = cursor.fetchall()
     return order_by_desc
 
+
 @connection.connection_handler
 def get_answers(cursor):
     cursor.execute("""Select id, message, submission_time, vote_number, question_id from answer
@@ -37,6 +38,7 @@ def save_question(cursor, title, message):
     cursor.execute("""INSERT INTO question (submission_time, view_number, vote_number, title, message) 
     VALUES (%s, 0, 0, %s, %s)""",
                    [datetime.datetime.now(), title, message])
+
 
 @connection.connection_handler
 def save_answer(cursor, id, message):
@@ -64,5 +66,4 @@ def answer_up_vote(cursor, id):
     cursor.execute("""UPDATE answer SET vote_number = vote_number + 1
      WHERE answer.id =%s""",
                    [id])
-
 
