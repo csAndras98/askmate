@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, request
 import data_manager
+import bcrypt
 
 app = Flask(__name__)
 switch = True
@@ -9,6 +10,7 @@ switch = True
 def all_questions():
     questions = data_manager.last_5_questions()
     return render_template('index.html', questions=questions)
+
 
 
 @app.route('/list', methods=['GET', 'POST'])
@@ -26,14 +28,12 @@ def list():
         questions = data_manager.title_order_by_desc()
     return render_template('list.html', questions=questions)
 
-
 @app.route('/add-question', methods=['GET', 'POST'])
-def route_add_question():
+def route_add_question ():
     if request.method == 'POST':
         data_manager.save_question(request.form['Your Question'], request.form['Your Comment'])
         return redirect('/')
     return render_template('add-question.html')
-
 
 @app.route('/question/<question_id>/new-answer', methods=['GET', 'POST'])
 def route_new_answer(question_id=None):
@@ -45,12 +45,11 @@ def route_new_answer(question_id=None):
 
 @app.route('/question/<question_id>', methods=['GET', 'POST'])
 def route_question(question_id=None):
+    questions = data_manager.title_order_by_desc()
+    answers = data_manager.get_answers()
     if request.method == 'POST':
         data_manager.view_num(question_id)
         return redirect(f'/question/{question_id}')
-
-    questions = data_manager.title_order_by_desc()
-    answers = data_manager.get_answers()
     return render_template('question.html', question_id=int(question_id), questions=questions, answers=answers)
 
 
@@ -64,6 +63,11 @@ def question_up_vote(question_id=None):
 def answer_up_vote(answer_id=None, question_id=None):
     data_manager.answer_up_vote(answer_id)
     return redirect(f'/question/{question_id}')
+
+@app.route('/registrator')
+def registration():
+
+    return render_template('password.html')
 
 
 if __name__ == '__main__':
