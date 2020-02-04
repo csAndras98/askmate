@@ -8,6 +8,7 @@
     <body>
      <div class="banner-img">
         <h1>Ask Question</h1>
+         <form action='/add-question' method="POST">
             <label for="Your question">Your question:</label>
             <textarea id="Your Question" name="Your Question" rows="8" cols="80"></textarea>
             <p></p>
@@ -15,7 +16,6 @@
             <textarea id="Your Comment" name="Your Comment" rows="8" cols="80"></textarea>
             <p></p>
         <div class="button">
-        <form action='/add-question' method="POST">
             <button type="submit">Ask away</button>
         </form>
         </div>
