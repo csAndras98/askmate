@@ -1,6 +1,7 @@
 import connection
 import datetime
 
+
 @connection.connection_handler
 def last_5_questions(cursor):
     cursor.execute("""Select id, title, submission_time, view_number, vote_number, message from question
