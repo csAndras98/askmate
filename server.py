@@ -26,12 +26,14 @@ def list():
         questions = data_manager.title_order_by_desc()
     return render_template('list.html', questions=questions)
 
+
 @app.route('/add-question', methods=['GET', 'POST'])
 def route_add_question ():
     if request.method == 'POST':
         data_manager.save_question(request.form['Your Question'], request.form['Your Comment'])
         return redirect('/')
     return render_template('add-question.html')
+
 
 @app.route('/question/<question_id>/new-answer', methods=['GET', 'POST'])
 def route_new_answer(question_id=None):
