@@ -1,4 +1,3 @@
-
 --
 -- PostgreSQL database dump
 --
@@ -60,6 +59,15 @@ CREATE TABLE tag (
     id serial NOT NULL,
     name text
 );
+
+DROP TABLE IF EXISTS public.users;
+CREATE TABLE users
+(
+    data timestamp without time zone,
+    username text,
+    hashed_password text
+);
+
 
 
 ALTER TABLE ONLY answer
