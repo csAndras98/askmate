@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Users list</title>
+    <link rel="stylesheet" href="static/all-users.css" type= "text/css" media="screen"/>
+</head>
+<body>
+<div class="banner-img">
+<table class="separator">
+    <th>Users</th>
+     <th>Date</th>
+    {% for all_user in all_users %}
+
+        <tr>
+
+        </td>
+        <td>{{all_user['username']}}</td>
+        <td>{{all_user['data']}}</td>
+
+    </tr>
+
+    {%endfor%}
+
+
+</table>
+
+<p><a href="/"> Homepage! </a></p>
+</div>
+</body>
+</html>
