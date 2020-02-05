@@ -68,3 +68,19 @@ def answer_up_vote(cursor, id):
      WHERE answer.id =%s""",
                    [id])
 
+
+@connection.connection_handler
+def check_user_name(cursor, username):
+    cursor.execute("""
+                    SELECT * FROM users
+                    WHERE username = %(username)s
+                    """, {'username': username})
+    check = cursor.fetchall()
+    return check
+
+
+@connection.connection_handler
+def register_user(cursor, user, password):
+    cursor.execute("""INSERT INTO users (data, username, hashed_password) 
+    VALUES (%(time)s, %(user)s, %(pass)s)""",
+                   {'time': datetime.datetime.now().strftime("%Y-%m-%d %H:%M"), 'user': user, 'pass': password})

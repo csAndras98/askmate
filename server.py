@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, request
 import data_manager
+import password_hash
 
 app = Flask(__name__)
 switch = True
@@ -68,9 +69,37 @@ def answer_up_vote(answer_id=None, question_id=None):
 @app.route('/registrator', methods=['GET', 'POST'])
 def registration():
 
-    return render_template('password.html')
+    if request.method == 'POST':
+        name = request.form["username"]
+        password = request.form["password"]
+        password1 = request.form["password1"]
+        if password == password1 and not data_manager.check_user_name(name):
+            hashed_password = password_hash.hash_password(password)
+            data_manager.register_user(name, hashed_password)
+            return render_template('password.html')
+        else:
+            return render_template('password.html')
+    else:
+        return render_template('password.html')
 
 
+"""@app.route('/registrator', methods=['GET','POST'])
+def registration():
+
+    if request.method == 'POST':
+        check_user_name = data_manager.check_user_name(request.form["username"])
+        if check_user_name != None:
+            return redirect('/')
+        else:
+            hashed_password = password_hash.hash_password(request.form["password"])
+            hashed_password1 = password_hash.hash_password(request.form["password1"])
+            if hashed_password == hashed_password1:
+                data_manager.register_user(request.form["username"], request.form["password"])
+                return redirect('/')
+
+    else:
+        return render_template('password.html')
+"""
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 
