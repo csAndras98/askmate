@@ -28,6 +28,13 @@ def list():
     return render_template('list.html', questions=questions)
 
 
+
+@app.route('/all-users')
+def all_users_data():
+    all_users = data_manager.all_user_data()
+    return render_template('all-users.html', all_users=all_users)
+
+
 @app.route('/add-question', methods=['GET', 'POST'])
 def route_add_question ():
     if request.method == 'POST':
@@ -76,30 +83,13 @@ def registration():
         if password == password1 and not data_manager.check_user_name(name):
             hashed_password = password_hash.hash_password(password)
             data_manager.register_user(name, hashed_password)
-            return render_template('password.html')
-        else:
-            return render_template('password.html')
-    else:
-        return render_template('password.html')
-
-
-"""@app.route('/registrator', methods=['GET','POST'])
-def registration():
-
-    if request.method == 'POST':
-        check_user_name = data_manager.check_user_name(request.form["username"])
-        if check_user_name != None:
             return redirect('/')
         else:
-            hashed_password = password_hash.hash_password(request.form["password"])
-            hashed_password1 = password_hash.hash_password(request.form["password1"])
-            if hashed_password == hashed_password1:
-                data_manager.register_user(request.form["username"], request.form["password"])
-                return redirect('/')
-
+            return render_template('password.html', wrong_user_info=True)
     else:
-        return render_template('password.html')
-"""
+        return render_template('password.html', wrong_user_info=False)
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 
