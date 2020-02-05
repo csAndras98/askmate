@@ -1,6 +1,5 @@
 from flask import Flask, render_template, redirect, request
 import data_manager
-import bcrypt
 
 app = Flask(__name__)
 switch = True
@@ -10,7 +9,6 @@ switch = True
 def all_questions():
     questions = data_manager.last_5_questions()
     return render_template('index.html', questions=questions)
-
 
 
 @app.route('/list', methods=['GET', 'POST'])
@@ -64,10 +62,17 @@ def answer_up_vote(answer_id=None, question_id=None):
     data_manager.answer_up_vote(answer_id)
     return redirect(f'/question/{question_id}')
 
-@app.route('/registrator')
+
+@app.route('/registrator', methods=['GET', 'POST'])
 def registration():
 
     return render_template('password.html')
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+
+    return render_template('login.html')
 
 
 if __name__ == '__main__':

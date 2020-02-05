@@ -1,0 +1,19 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registraton</title>
+
+</head>
+<body>
+    <h1>Log in, Mate!</h1>
+    <form action="{{ url_for("login") }}" method="POST">
+        <p>Username:</p>
+        <p><input type="text" name="username" placeholder="Username" minlength="3" required></p>
+        <p>Password:</p>
+        <p><input type="password" name="password" placeholder="Password" minlength="5" required></p>
+        <input type="submit" value="Registration">
+    </form>
+</body>
+</html>
