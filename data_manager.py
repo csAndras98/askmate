@@ -84,3 +84,12 @@ def register_user(cursor, user, password):
     cursor.execute("""INSERT INTO users (data, username, hashed_password) 
     VALUES (%(time)s, %(user)s, %(pass)s)""",
                    {'time': datetime.datetime.now().strftime("%Y-%m-%d %H:%M"), 'user': user, 'pass': password})
+
+
+@connection.connection_handler
+def all_user_data(cursor):
+    cursor.execute("""
+                    SELECT username, data FROM users
+                    """)
+    all_users = cursor.fetchall()
+    return all_users
