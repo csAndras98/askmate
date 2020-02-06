@@ -13,9 +13,14 @@
         {% if question['id'] == question_id %}
             <h1>{{ question['title'] }}</h1>
             <h2>{{ question['message'] }}</h2>
+            {% if user %}
             <form action="/question/{{ question_id }}/up_vote" method="get">
                 <div class="button"><input type="submit" value="Vote (question)"/></div>
             </form>
+            {% endif %}
+            {% if not user %}
+                <p>Log in to vote</p>
+            {% endif %}
         {% endif %}
     {% endfor %}
 <table class="separator">
@@ -23,11 +28,14 @@
         {% if answer['question_id'] == question_id %}
             <tr><td>{{ answer['message'] }}</td>
              <th>{{ answer['vote_number'] }}
-            <form action="/question/{{ question_id }}/{{ answer['id'] }}/up_vote" method="get">
-                <div class="button">
-                <input type="submit" value="Like"/>
-
-            </form>
+                 {% if user %}
+                 <form action="/question/{{ question_id }}/{{ answer['id'] }}/up_vote" method="get">
+                     <div class="button"><input type="submit" value="Like"/></div>
+                </form>
+                 {% endif %}
+                 {% if not user %}
+                 <p>Log in to vote</p>
+                 {% endif %}
             </th></tr>
         {% endif %}
     {% endfor %}

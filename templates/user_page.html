@@ -11,18 +11,19 @@
         <th>view number</th>
         <th>vote number</th>
         {% for question in questions %}
+            {% if user == question['uploader'] %}
 
-        <tr>
-            <td><form action="/question/{{question['id']}}" method="post">
-                <button type="submit" class="btn-link">{{question['title']}}</button>
-            </form>
-            </td>
-            <td>{{question['submission_time']}}</td>
-            <td>{{question['view_number']}}</td>
-            <td>{{question['vote_number']}}</td>
+                <tr>
+                    <td><form action="/question/{{question['id']}}" method="post">
+                        <button type="submit" class="btn-link">{{question['title']}}</button>
+                    </form>
+                    </td>
+                    <td>{{question['submission_time']}}</td>
+                    <td>{{question['view_number']}}</td>
+                    <td>{{question['vote_number']}}</td>
 
-        </tr>
-
+                </tr>
+            {% endif %}
         {%endfor%}
         <div class="button">
             <form action="/list" method="POST">

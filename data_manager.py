@@ -4,7 +4,7 @@ import datetime
 
 @connection.connection_handler
 def last_5_questions(cursor):
-    cursor.execute("""Select id, title, submission_time, view_number, vote_number, message from question
+    cursor.execute("""Select id, title, submission_time, view_number, vote_number, message, uploader from question
     order by submission_time desc limit 5""")
     questions = cursor.fetchall()
     return questions
@@ -12,7 +12,7 @@ def last_5_questions(cursor):
 
 @connection.connection_handler
 def title_order_by_asc(cursor):
-    cursor.execute("""Select id, title, submission_time, message, view_number, vote_number from question
+    cursor.execute("""Select id, title, submission_time, message, view_number, vote_number, uploader from question
     ORDER BY title ASC """)
     order_by_asc = cursor.fetchall()
     return order_by_asc
@@ -20,7 +20,7 @@ def title_order_by_asc(cursor):
 
 @connection.connection_handler
 def title_order_by_desc(cursor):
-    cursor.execute("""Select id, title, submission_time, message, view_number, vote_number from question
+    cursor.execute("""Select id, title, submission_time, message, view_number, vote_number, uploader from question
     ORDER BY title DESC """)
     order_by_desc = cursor.fetchall()
     return order_by_desc
@@ -28,7 +28,7 @@ def title_order_by_desc(cursor):
 
 @connection.connection_handler
 def get_answers(cursor):
-    cursor.execute("""Select id, message, submission_time, vote_number, question_id from answer
+    cursor.execute("""Select id, message, submission_time, vote_number, question_id, uploader from answer
     order by submission_time desc """)
     answer = cursor.fetchall()
     return answer

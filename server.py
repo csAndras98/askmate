@@ -8,7 +8,7 @@ switch = True
 
 
 @app.route('/')
-def all_questions():
+def homepage():
     questions = data_manager.last_5_questions()
     if 'username' in session:
         return render_template('index.html', questions=questions, user=escape(session['username']))
@@ -32,7 +32,6 @@ def list():
     return render_template('list.html', questions=questions)
 
 
-
 @app.route('/all-users')
 def all_users_data():
     all_users = data_manager.all_user_data()
@@ -41,28 +40,36 @@ def all_users_data():
 
 @app.route('/add-question', methods=['GET', 'POST'])
 def route_add_question():
-    if request.method == 'POST':
-        data_manager.save_question(request.form['Your Question'], request.form['Your Comment'], escape(session['username']))
+    if 'username' in session:
+        if request.method == 'POST':
+            data_manager.save_question(request.form['Your Question'], request.form['Your Comment'], escape(session['username']))
+            return redirect('/')
+        return render_template('add-question.html')
+    else:
         return redirect('/')
-    return render_template('add-question.html')
 
 
 @app.route('/question/<question_id>/new-answer', methods=['GET', 'POST'])
 def route_new_answer(question_id=None):
-    if request.method == 'POST':
-        data_manager.save_answer(question_id, request.form['note'], escape(session['username']))
+    if 'username' in session:
+        if request.method == 'POST':
+            data_manager.save_answer(question_id, request.form['note'], escape(session['username']))
+            return redirect(f'/question/{question_id}')
+        return render_template('new-answer.html', question_id=question_id)
+    else:
         return redirect(f'/question/{question_id}')
-    return render_template('new-answer.html', question_id=question_id)
 
 
 @app.route('/question/<question_id>', methods=['GET', 'POST'])
-def route_question(question_id=None):
+def route_question(question_id=None, username=None):
+    if 'username' in session:
+        username = escape(session['username'])
     questions = data_manager.title_order_by_desc()
     answers = data_manager.get_answers()
     if request.method == 'POST':
         data_manager.view_num(question_id)
         return redirect(f'/question/{question_id}')
-    return render_template('question.html', question_id=int(question_id), questions=questions, answers=answers)
+    return render_template('question.html', question_id=int(question_id), questions=questions, answers=answers, user=username)
 
 
 @app.route('/question/<question_id>/up_vote')
@@ -79,41 +86,50 @@ def answer_up_vote(answer_id=None, question_id=None):
 
 @app.route('/<username>')
 def user_page(username=None):
-    username = escape(session['username'])
-    questions = data_manager.title_order_by_asc()
-    return render_template('user_page.html', user=username, questions=questions)
+    if 'username' in session:
+        username = escape(session['username'])
+        questions = data_manager.title_order_by_asc()
+        return render_template('user_page.html', user=username, questions=questions)
+    else:
+        return redirect('/')
 
 
 @app.route('/registrator', methods=['GET', 'POST'])
 def registration():
 
-    if request.method == 'POST':
-        name = request.form["username"]
-        password = request.form["password"]
-        password1 = request.form["password1"]
-        if password == password1 and not data_manager.check_user_name(name):
-            hashed_password = password_hash.hash_password(password)
-            data_manager.register_user(name, hashed_password)
-            session['username'] = name
-            return redirect('/')
+    if 'username' not in session:
+        if request.method == 'POST':
+            name = request.form["username"]
+            password = request.form["password"]
+            password1 = request.form["password1"]
+            if password == password1 and not data_manager.check_user_name(name):
+                hashed_password = password_hash.hash_password(password)
+                data_manager.register_user(name, hashed_password)
+                session['username'] = name
+                return redirect('/')
+            else:
+                return render_template('password.html', wrong_user_info=True)
         else:
-            return render_template('password.html', wrong_user_info=True)
+            return render_template('password.html', wrong_user_info=False)
     else:
-        return render_template('password.html', wrong_user_info=False)
+        return redirect('/')
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST':
-        name = request.form["username"]
-        password = request.form["password"]
-        if data_manager.get_user_data(name) \
-                and password_hash.verify_password(password, data_manager.get_user_data(name)[0]['hashed_password']) == True:
-            session['username'] = name
-            return redirect('/')
-        else:
-            return render_template('login.html')
-    return render_template('login.html')
+    if 'username' not in session:
+        if request.method == 'POST':
+            name = request.form["username"]
+            password = request.form["password"]
+            if data_manager.get_user_data(name) \
+                    and password_hash.verify_password(password, data_manager.get_user_data(name)[0]['hashed_password']) == True:
+                session['username'] = name
+                return redirect('/')
+            else:
+                return render_template('login.html')
+        return render_template('login.html')
+    else:
+        return redirect('/')
 
 
 @app.route('/logout')
