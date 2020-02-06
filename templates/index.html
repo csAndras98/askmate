@@ -40,5 +40,9 @@
 <p></p>
 <a href ='registrator'>Password</a>
 
+{% if user %}
+<p> <a href ='{{user}}'> {{user}} </a></p>
+{% endif %}
+
 </body>
 </html>

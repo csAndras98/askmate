@@ -1,15 +1,19 @@
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, request, session, escape
 import data_manager
 import password_hash
 
 app = Flask(__name__)
+app.secret_key = b'_+#y9L"F4O8o\n\xec]/'
 switch = True
 
 
 @app.route('/')
 def all_questions():
     questions = data_manager.last_5_questions()
-    return render_template('index.html', questions=questions)
+    if 'username' in session:
+        return render_template('index.html', questions=questions, user=escape(session['username']))
+    else:
+        return render_template('index.html', questions=questions)
 
 
 @app.route('/list', methods=['GET', 'POST'])
@@ -36,7 +40,7 @@ def all_users_data():
 
 
 @app.route('/add-question', methods=['GET', 'POST'])
-def route_add_question ():
+def route_add_question():
     if request.method == 'POST':
         data_manager.save_question(request.form['Your Question'], request.form['Your Comment'])
         return redirect('/')
@@ -73,6 +77,12 @@ def answer_up_vote(answer_id=None, question_id=None):
     return redirect(f'/question/{question_id}')
 
 
+@app.route('/<username>')
+def user_page(username=None):
+    username = escape(session['username'])
+    return render_template('user_page.html', user=username)
+
+
 @app.route('/registrator', methods=['GET', 'POST'])
 def registration():
 
@@ -83,6 +93,7 @@ def registration():
         if password == password1 and not data_manager.check_user_name(name):
             hashed_password = password_hash.hash_password(password)
             data_manager.register_user(name, hashed_password)
+            session['username'] = name
             return redirect('/')
         else:
             return render_template('password.html', wrong_user_info=True)
@@ -97,10 +108,17 @@ def login():
         password = request.form["password"]
         if data_manager.get_user_data(name) \
                 and password_hash.verify_password(password, data_manager.get_user_data(name)[0]['hashed_password']) == True:
+            session['username'] = name
             return redirect('/')
         else:
             return render_template('login.html')
     return render_template('login.html')
+
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect('/')
 
 
 if __name__ == '__main__':
