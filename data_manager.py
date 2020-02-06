@@ -93,3 +93,15 @@ def all_user_data(cursor):
                     """)
     all_users = cursor.fetchall()
     return all_users
+
+
+@connection.connection_handler
+def get_user_data(cursor, username):
+    cursor.execute("""
+                    SELECT username, hashed_password
+                    FROM users
+                    WHERE username = %(username)s
+                    """,
+                   {'username': username})
+    user_data = cursor.fetchall()
+    return user_data

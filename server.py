@@ -92,7 +92,14 @@ def registration():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-
+    if request.method == 'POST':
+        name = request.form["username"]
+        password = request.form["password"]
+        if data_manager.get_user_data(name) \
+                and password_hash.verify_password(password, data_manager.get_user_data(name)[0]['hashed_password']) == True:
+            return redirect('/')
+        else:
+            return render_template('login.html')
     return render_template('login.html')
 
 
