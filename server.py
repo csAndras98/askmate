@@ -80,7 +80,8 @@ def answer_up_vote(answer_id=None, question_id=None):
 @app.route('/<username>')
 def user_page(username=None):
     username = escape(session['username'])
-    return render_template('user_page.html', user=username)
+    questions = data_manager.title_order_by_asc()
+    return render_template('user_page.html', user=username, questions=questions)
 
 
 @app.route('/registrator', methods=['GET', 'POST'])

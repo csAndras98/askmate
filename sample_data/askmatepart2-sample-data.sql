@@ -129,3 +129,6 @@ SELECT pg_catalog.setval('tag_id_seq', 3, true);
 INSERT INTO question_tag VALUES (0, 1);
 INSERT INTO question_tag VALUES (1, 3);
 INSERT INTO question_tag VALUES (2, 3);
+INSERT INTO users (username, hashed_password, data)
+VALUES ('Mintajancsi','$2b$12$kZSf7/FGlSLuEyrhfc/YeUHV6R3xWjUUncvRrvAIJEDDTRQwMxK.', '2019-12-28 00:00:00');INSERT INTO users (username, hashed_password, data)
+                                                                                                            VALUES ('Példapeti','$2b$12$kZSf7/FGlSLuEyrhfc/YeUHV6R3xWjUUncvRrvAIJEBBTRQwMxK.', '2020-01-28 00:00:00');
