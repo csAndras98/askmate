@@ -36,12 +36,17 @@
 </tbody> </div>
 
 </table>
-<a href ='add-question'>Ask question</a>
-<p></p>
-<a href ='registrator'>Password</a>
+
 
 {% if user %}
+<p> <a href ='add-question'>Ask question</a> </p>
 <p> <a href ='{{user}}'> {{user}} </a></p>
+<p> <a href ='logout'> logout </a> </p>
+{% endif %}
+{% if not user %}
+<p> Login to ask question, Mate! </p>
+<p> <a href ='registrator'>Register</a> </p>
+<p> <a href ='login'> Login </a> </p>
 {% endif %}
 
 </body>

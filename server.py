@@ -42,7 +42,7 @@ def all_users_data():
 @app.route('/add-question', methods=['GET', 'POST'])
 def route_add_question():
     if request.method == 'POST':
-        data_manager.save_question(request.form['Your Question'], request.form['Your Comment'])
+        data_manager.save_question(request.form['Your Question'], request.form['Your Comment'], escape(session['username']))
         return redirect('/')
     return render_template('add-question.html')
 
@@ -50,7 +50,7 @@ def route_add_question():
 @app.route('/question/<question_id>/new-answer', methods=['GET', 'POST'])
 def route_new_answer(question_id=None):
     if request.method == 'POST':
-        data_manager.save_answer(question_id, request.form['note'])
+        data_manager.save_answer(question_id, request.form['note'], escape(session['username']))
         return redirect(f'/question/{question_id}')
     return render_template('new-answer.html', question_id=question_id)
 

@@ -35,17 +35,17 @@ def get_answers(cursor):
 
 
 @connection.connection_handler
-def save_question(cursor, title, message):
-    cursor.execute("""INSERT INTO question (submission_time, view_number, vote_number, title, message) 
-    VALUES (%(time)s, 0, 0, %(title)s, %(mess)s)""",
-                   {'time': datetime.datetime.now().strftime("%Y-%m-%d %H:%M"), 'title': title, 'mess': message})
+def save_question(cursor, title, message, uploader):
+    cursor.execute("""INSERT INTO question (submission_time, view_number, vote_number, title, message, uploader) 
+    VALUES (%(time)s, 0, 0, %(title)s, %(mess)s, %(user)s)""",
+                   {'time': datetime.datetime.now().strftime("%Y-%m-%d %H:%M"), 'title': title, 'mess': message, 'user': uploader})
 
 
 @connection.connection_handler
-def save_answer(cursor, id, message):
-    cursor.execute("""INSERT INTO answer (submission_time, vote_number, question_id, message) 
-    VALUES (%(time)s, 0, %(id)s, %(mess)s)""",
-                   {'time': datetime.datetime.now().strftime("%Y-%m-%d %H:%M"), 'id': id, 'mess': message})
+def save_answer(cursor, id, message, uploader):
+    cursor.execute("""INSERT INTO answer (submission_time, vote_number, question_id, message, uploader) 
+    VALUES (%(time)s, 0, %(id)s, %(mess)s, %(user)s)""",
+                   {'time': datetime.datetime.now().strftime("%Y-%m-%d %H:%M"), 'id': id, 'mess': message, 'user': uploader})
 
 
 @connection.connection_handler
