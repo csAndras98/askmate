@@ -84,6 +84,26 @@ def answer_up_vote(answer_id=None, question_id=None):
     return redirect(f'/question/{question_id}')
 
 
+@app.route('/question/<question_id>/delete')
+def delete_question(question_id=None):
+    if 'username' in session:
+        user = escape(session['username'])
+        data_manager.delete_question(question_id, user)
+        return redirect('/')
+    else:
+        return redirect(f'/question/{question_id}')
+
+
+@app.route('/question/<question_id>/<answer_id>/delete')
+def delete_question(question_id=None, answer_id=None):
+    if 'username' in session:
+        user = escape(session['username'])
+        data_manager.delete_answer(answer_id, user)
+        return redirect(f'/question/{question_id}')
+    else:
+        return redirect(f'/question/{question_id}')
+
+
 @app.route('/<username>')
 def user_page(username=None):
     if 'username' in session:
