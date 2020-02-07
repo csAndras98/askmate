@@ -17,6 +17,9 @@
             <form action="/question/{{ question_id }}/up_vote" method="get">
                 <div class="button"><input type="submit" value="Vote (question)"/></div>
             </form>
+                <form action="/question/{{ question_id }}/delete" method="get">
+                <div class="button"><input type="submit" value="Delete question"/></div>
+            </form>
             {% endif %}
             {% if not user %}
                 <p>Log in to vote</p>
@@ -32,9 +35,12 @@
                  <form action="/question/{{ question_id }}/{{ answer['id'] }}/up_vote" method="get">
                      <div class="button"><input type="submit" value="Like"/></div>
                 </form>
+                     <form action="/question/{{ question_id }}/{{ answer['id'] }}/delete" method="get">
+                     <div class="button"><input type="submit" value="Delete"/></div>
+                </form>
                  {% endif %}
                  {% if not user %}
-                 <p>Log in to vote</p>
+
                  {% endif %}
             </th></tr>
         {% endif %}
