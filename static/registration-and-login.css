@@ -1,0 +1,30 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  }
+
+.banner-img{background-image: url("asztal.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+background-position: center;
+    height: 100%;
+    width: 100%;
+    margin-top: -30px;
+}
+
+h1 {
+  text-align: center;
+    backdrop-filter: blur(10xp);
+  font-weight: bold;
+  font-size: 300%;
+  font-family: 'Covered By Your Grace', cursive;
+  text-shadow: 0 10px 5px white;
+    color: black;
+  }
+
+p{font-family: georgia;
+    font-size: 150%;
+  text-align: center;
+}
